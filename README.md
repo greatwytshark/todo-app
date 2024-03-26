@@ -1,2 +1,2 @@
-# todo-app
+# Todo-App
 My todo application (Springboot and Angular)
