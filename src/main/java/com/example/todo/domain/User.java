@@ -1,8 +1,6 @@
 package com.example.todo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,12 +13,37 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Auth implements UserDetails {
+@Table(name = "users")
+public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToOne
-    private User user;
+    @Column(
+            name = "first_name",
+            nullable = false
+    )
+    private String firstName;
+    @Column(
+            name = "last_name",
+            nullable = false
+    )
+    private String lastName;
+    @Column(
+            name = "email",
+            unique = true,
+            nullable = false
+    )
+    private String email;
+    @Column(
+            name = "username",
+            unique = true,
+            nullable = false
+    )
     private String username;
+    @Column(
+            name = "password",
+            nullable = false
+    )
     private String password;
 
     @Override

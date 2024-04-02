@@ -53,7 +53,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/auth/**").permitAll();
+                    auth.requestMatchers("/user/**", "/auth/**").permitAll();
                 });
         httpSecurity.oauth2ResourceServer()
                 .jwt()
