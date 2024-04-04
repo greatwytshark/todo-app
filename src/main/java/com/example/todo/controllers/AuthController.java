@@ -18,20 +18,11 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    record createUser(String firstName, String secondName, String username, String email){}
+    public record LoginRequest(String username, String password){}
 
-    @PostMapping("/register")
-    public UserDTO register(@RequestBody createUser request){
-        User user = authService.registerUser(request.firstName, request.secondName, request.username, request.email);
-
-        //generate OTP
-        //send OTP to email
-
-        return new UserDTO(user.getFirstName(), user.getSecondName(), user.getUsername());
-    };
-    @PostMapping("/otplogin")
-    public void loginWithOtp(){}
 
     @PostMapping("/login")
-    public void login(String username, String password){}
+    public UserDTO login(@RequestBody LoginRequest auth){
+        return authService.loginUser(auth);
+    }
 }
