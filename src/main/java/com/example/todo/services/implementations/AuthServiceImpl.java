@@ -1,5 +1,6 @@
 package com.example.todo.services.implementations;
 
+import com.example.todo.controllers.AuthController;
 import com.example.todo.dto.UserDTO;
 import com.example.todo.services.AuthService;
 import com.example.todo.services.TokenService;
@@ -19,9 +20,10 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public UserDTO loginUser(String username, String password) {
-        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    public UserDTO loginUser(AuthController.LoginRequest request) {
+        Authentication auth = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
         String token = tokenService.generateJwt(auth);
-        return new UserDTO(username, token);
+        return new UserDTO(request.username(), token);
     }
 }

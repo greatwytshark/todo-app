@@ -15,11 +15,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    record UserRecord(String firstName, String lastName, String email, String username, String password){}
+    public record UserRecord(String firstName, String lastName, String email, String username, String password){}
 
     @PostMapping("/register")
     public User registerUser(@RequestBody UserRecord userRecord){
-        User user = userService.registerUser(userRecord.firstName, userRecord.lastName, userRecord.email, userRecord.username, userRecord.password);
+        User user = userService.registerUser(userRecord);
         return user;
     };
 }

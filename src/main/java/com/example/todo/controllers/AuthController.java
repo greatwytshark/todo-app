@@ -18,11 +18,11 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    record LoginRequest(String username, String password){}
+    public record LoginRequest(String username, String password){}
 
 
     @PostMapping("/login")
     public UserDTO login(@RequestBody LoginRequest auth){
-        return authService.loginUser(auth.username, auth.password);
+        return authService.loginUser(auth);
     }
 }
