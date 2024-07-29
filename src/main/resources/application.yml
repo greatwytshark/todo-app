@@ -12,4 +12,19 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+  messages:
+    basename: messages,errors
+
 debug: true
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+logging:
+  level:
+    root: error
+    controllers: debug
+    configurations: debug
+
