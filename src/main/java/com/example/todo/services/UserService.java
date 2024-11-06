@@ -5,4 +5,5 @@ import com.example.todo.domain.User;
 
 public interface UserService  {
     User registerUser(UserController.UserRecord userRecord);
+    String getLoggedInUsername();
 }

@@ -18,10 +18,10 @@ public class UserController {
     private UserService userService;
 
     public record UserRecord(@NotBlank(message = "Please provide your first name") String firstName, String lastName, String email, String username, String password){}
+    // create a separate record file for the UserRecord record such that we dont overload the UserController file
 
     @PostMapping("/register")
     public User registerUser(@Validated @RequestBody UserRecord userRecord){
-        User user = userService.registerUser(userRecord);
-        return user;
+        return userService.registerUser(userRecord);
     };
 }

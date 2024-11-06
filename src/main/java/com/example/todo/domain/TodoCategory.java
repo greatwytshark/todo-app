@@ -5,16 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Table(name = "categories")
-public class Category {
+public class TodoCategory {
     @Id
     @GeneratedValue
     @Column(name = "category_id")
@@ -26,6 +22,7 @@ public class Category {
     private String name;
     @Column(name = "description")
     private String description;
-    @ManyToMany
-    private Set<User> users;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

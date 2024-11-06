@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -22,6 +20,10 @@ public class Todo {
             nullable = false
     )
     private String name;
-    @ManyToMany
-    private Set<Category> category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TodoCategory category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }
+
